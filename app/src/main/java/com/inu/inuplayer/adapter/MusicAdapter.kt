@@ -37,13 +37,12 @@ class MusicAdapter(val onClick: (MediaStoreMusic, View) -> Unit,
             .centerCrop()
             .into(holder.imageAlbum)
 
-//        holder.imageIsPlay.visibility = View.INVISIBLE
-        GlideApp.with(holder.imageIsPlay)
-            .load(R.raw.bounc)
-            .into(holder.imageIsPlay)
         if (music.isSelected == true) {
             holder.imageIsPlay.visibility = View.VISIBLE
         } else holder.imageIsPlay.visibility = View.INVISIBLE
+        GlideApp.with(holder.imageIsPlay)
+            .load(R.raw.bounc)
+            .into(holder.imageIsPlay)
 
         // 삭제 정상작동
        /* holder.imageAlbum.setOnClickListener {
