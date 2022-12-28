@@ -211,7 +211,15 @@ class MusicViewModel(/*application: Application,*/ private val repository: Repos
         registerContentObserver(uri, true, contentObserver)
         return contentObserver
     }
-
+    /**
+     * Since we register a [ContentObserver], we want to unregister this when the `ViewModel`
+     * is being released.
+     */
+    override fun onCleared() {
+        contentObserver?.let {
+            MyApplication().applicationContext.contentResolver.unregisterContentObserver(it)
+        }
+    }
     private suspend fun queryMusics(query: String?): MutableList<MediaStoreMusic> {
         var musics = mutableListOf<MediaStoreMusic>()
 

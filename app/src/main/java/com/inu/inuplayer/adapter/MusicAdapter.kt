@@ -31,7 +31,7 @@ class MusicAdapter(val onClick: (MediaStoreMusic, View) -> Unit,
         holder.setMusic(music)
         GlideApp.with(holder.imageAlbum)
             .load(music.albumUri)
-            .thumbnail(0.33f)
+//            .thumbnail(0.33f)
             .placeholder(resId)
             .error(resId)
             .centerCrop()
@@ -94,10 +94,17 @@ class MusicAdapter(val onClick: (MediaStoreMusic, View) -> Unit,
         val imageIsPlay: ImageView = view.findViewById(R.id.imageView_isplay)
         val imageMenu: ImageView = view.findViewById(R.id.imageView_menu)
 
-        /*init { // music을 받아오기 힘듬
+        /*init { // music을 받아오기 힘듬, 동작안함
             rootView.setOnClickListener {
                 val music = rootView.tag as? MediaStoreMusic ?: return@setOnClickListener
-                onClick(music)
+
+                Log.d("init(adapter)","currentPosition= ${music.currentPosition}, isSelected= ${music.isSelected}" )
+                onClick(music, rootView)
+            }
+
+            imageMenu.setOnClickListener {
+                val music = rootView.tag as? MediaStoreMusic ?: return@setOnClickListener
+                itemClick(music)
             }
         }*/
 
