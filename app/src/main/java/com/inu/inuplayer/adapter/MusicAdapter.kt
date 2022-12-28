@@ -26,7 +26,7 @@ class MusicAdapter(val onClick: (MediaStoreMusic, View) -> Unit,
 
     override fun onBindViewHolder(holder: MusicViewHolder, position: Int) {
         val music = getItem(position)
-//        holder.rootView.tag = MediaStoreMusic
+        holder.rootView.tag = MediaStoreMusic
 
         holder.setMusic(music)
         GlideApp.with(holder.imageAlbum)
@@ -37,17 +37,13 @@ class MusicAdapter(val onClick: (MediaStoreMusic, View) -> Unit,
             .centerCrop()
             .into(holder.imageAlbum)
 
-       /* holder.imageIsPlay.visibility = View.INVISIBLE
+//        holder.imageIsPlay.visibility = View.INVISIBLE
         GlideApp.with(holder.imageIsPlay)
             .load(R.raw.bounc)
-            .into(holder.imageIsPlay)*/
-
-       /* if (music.isSelected) {
-//            holder.imageIsPlay.visibility = View.VISIBLE
-            GlideApp.with(holder.imageIsPlay)
-                .load(R.raw.bounc)
-                .into(holder.imageIsPlay)
-        }*/
+            .into(holder.imageIsPlay)
+        if (music.isSelected == true) {
+            holder.imageIsPlay.visibility = View.VISIBLE
+        } else holder.imageIsPlay.visibility = View.INVISIBLE
 
         // 삭제 정상작동
        /* holder.imageAlbum.setOnClickListener {

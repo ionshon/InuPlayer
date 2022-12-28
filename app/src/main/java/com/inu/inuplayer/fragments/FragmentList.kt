@@ -67,6 +67,13 @@ class FragmentList : Fragment() {
             Log.i("FragmentListVM", "viewModel.musics.observe(FragList2) ${MusicDevice.musicList.size} musics")
         })
 
+        viewModel.bookmarkUpdate.observe(requireActivity(), Observer{
+            it?.let {
+                musicAdapter.notifyChanged(it)
+                Log.d(".observe","currentPosition= ${it.currentPosition}, isSelected= ${it.isSelected}" )
+            }
+        })
+
         searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
